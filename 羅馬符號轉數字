@@ -1,0 +1,138 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include "header.h"
+using namespace std;
+
+//
+// 羅馬符號轉數字
+//
+
+
+// 'i','v','x','l','c','d','m'
+
+int main() {
+
+
+
+int n=0;
+string f1;
+string f2="ivxlcdm";
+
+
+cout<<"輸入羅馬字符 ";
+
+cin>>f1;
+
+
+
+if(f1.size()>15||f1.size()<1){
+	cout<<"lenght wrong";
+	return 0;
+}
+
+
+if(f1.find_first_not_of("ivxlcdm")!=string::npos){
+	cout<<"lenght wrong";
+	return 0;
+}
+
+
+//---------------------------------
+
+
+
+
+
+//********************************** 個
+if( f1.rfind("iv")!=string::npos ){
+	n+=4;
+	f1.erase(f1.rfind('iv')-1,2);
+}
+
+
+if( f1.rfind("ix")!=string::npos ){
+	n+=9;
+	f1.erase(f1.rfind('ix')-1,2);
+}
+
+
+//********************************** 十
+if( f1.rfind("xl")!=string::npos ){
+	n+=40;
+	f1.erase(f1.rfind('xl')-1,2);
+}
+
+
+if( f1.rfind("xc")!=string::npos ){
+	n+=90;
+	f1.erase(f1.rfind('xc')-1,2);
+}
+
+
+
+//********************************** 百
+if( f1.rfind("cd")!=string::npos ){
+	n+=400;
+	f1.erase(f1.rfind('cd')-1,2);
+}
+
+
+if( f1.rfind("cm")!=string::npos ){
+	n+=900;
+	f1.erase(f1.rfind('cm')-1,2);
+}
+
+
+
+
+
+
+
+for(size_t a1=0;a1<f1.size();a1++){
+	if(f1[a1]=='i'){
+		n+=1;
+		continue;
+	}
+
+
+	if(f1[a1]=='v'){
+		n+=5;
+		continue;
+	}
+
+
+	if(f1[a1]=='x'){
+		n+=10;
+		continue;
+	}
+
+
+	if(f1[a1]=='l'){
+		n+=50;
+		continue;
+	}
+
+
+	if(f1[a1]=='c'){
+		n+=100;
+		continue;
+	}
+
+
+	if(f1[a1]=='d'){
+		n+=500;
+		continue;
+	}
+
+
+}
+
+
+cout<<n<<endl;
+
+
+	return 0;
+
+}
